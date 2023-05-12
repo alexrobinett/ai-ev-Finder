@@ -11,6 +11,7 @@ export default function ChatWindow() {
     const [newMessage, setNewMessage] = useState( { role: "ai", message: "" } );
     const [input, setInput] = useState("");
     const [finished, setFinished] = useState(true);
+    const [history, setHistory] = useState([]);
     const [messages, setMessages] = useState([{
         role: "ai",
         message: "Hello, I'm EV-GPT! Ask me anything about Electric Vehicles.",
@@ -36,9 +37,7 @@ export default function ChatWindow() {
         }
         setFinished(false);
         setMessages((prev) => [...prev, { role: "human", message: input }])
-        console.log(input)
 
-      
 
         const res = await fetch("/api/chat", {
             method: "POST",
@@ -47,7 +46,7 @@ export default function ChatWindow() {
             },
             body: JSON.stringify({
                 query: input,
-                history: [],
+                history: history,
             }),
         });
 
@@ -67,8 +66,6 @@ export default function ChatWindow() {
                 }
 
                 const decodedValue = new TextDecoder().decode(value);
-                console.log(decodedValue)
-
                 setIncoming( ({ role, message }) => ({ role, message: message + decodedValue }));
             }
 
@@ -82,14 +79,14 @@ export default function ChatWindow() {
     };
 
   return (
-    <div className="mx-auto max-w-[1000px] flex flex-col bg-white flex-auto drop-shadow-md sm:rounded-lg pt-2">
+    <div className=" flex w-full flex-col bg-white flex-auto drop-shadow-md sm:rounded-lg pt-2 md:max-w-2xl sm:my-4 sm:px-4 ">
       <div className="px-4 py-5 sm:p-2 flex flex-col flex-grow ">
         <h1 className="text-2xl font-semibold leading-6 text-gray-900 mb-4 flex-none">EV GPT </h1>
-        <section className='border border-gray-500 rounded-md flex-1 overflow-y-auto p-2'>
-        <ChatBubbles messages={messages}/>
+        <section className='border border-gray-500 rounded-md flex-1 overflow-y-auto max-h-[28rem] p-2 md:max-h-[34rem]'>
+        <ChatBubbles messages={messages} finished={finished} incoming={incoming}/>
         </section>
         <form onSubmit={(e) => { e.preventDefault(); handleSubmit(e).catch(err => console.error(err)); }} className="mt-5 sm:flex sm:items-center flex-">
-          <div className="w-full sm:max-w-xs">
+          <div className="w-full">
             <label htmlFor="userInput" className="sr-only">
               EV GPT
             </label>
@@ -103,14 +100,14 @@ export default function ChatWindow() {
           {finished? (
             <button
             type="submit"
-            className="mt-3 inline-flex w-full items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:ml-3 sm:mt-0 sm:w-auto"
+            className="mt-3 inline-flex w-full items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 sm:ml-3 sm:mt-0 sm:w-auto"
           >
             Submit
           </button>
           ): (
             <button disabled
             type="submit"
-            className="animate-pulse mt-3 inline-flex w-full items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:ml-3 sm:mt-0 sm:w-auto"
+            className="animate-pulse mt-3 inline-flex w-full items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600   sm:ml-3 sm:mt-0 sm:w-auto"
           >
             Working
           </button>

@@ -1,46 +1,44 @@
 'use client';
 
+import React from 'react';
+
 type Message = {
-    role: string;
-    message: string;
+  role: string;
+  message: string;
 };
 
 type ChatBubblesProps = {
-    messages: Message[];
+  messages: Message[],
+  finished: boolean,
+  incoming: Message,
 };
 
+export default function ChatBubbles({ messages, finished, incoming }: ChatBubblesProps) {
+  return (
+    <div className="flex flex-col">
+      {messages.map((message, index) => {
+        const isAI = message.role === 'ai';
+        const bubbleStyle = isAI
+          ? 'bg-gray-200 text-sm p-2 m-2 rounded-md w-fit'
+          : 'bg-blue-500 text-white text-sm p-2 m-2 rounded-md w-fit';
 
-export default function ChatBubbles({messages}: ChatBubblesProps ) {
-    
+        return (
+          <div
+            key={index}
+            className={`flex ${isAI ? 'justify-start' : 'justify-end'}`}
+          >
+            <div className={bubbleStyle}>{message.message}</div>
+          </div>
+          
+        );
+      })}
 
-    return (
-        <div className="flex flex-col">
-
-        {messages.map((message, index) => {
-            return (
-                <div
-                    key={index}
-                    className={`flex ${
-                        message.role !== "ai"
-                            ? "justify-end"
-                            : "justify-start"
-                    }`}
-                >
-                    <div
-                        className={`${
-                            message.role !== "ai"
-                                ? "bg-blue-500 text-white"
-                                : "bg-gray-200"
-                        }  text-sm p-2 m-2 rounded-md max-w-sm`}
-                    >
-                        {message.message}
-                    </div>
-                </div>
-                
-            );
-        })}
-</div>
-      
-    )
-  }
-  
+        {!finished && (
+                            <div className="bg-gray-200 text-sm p-2 m-2 rounded-md w-fit">
+                                {incoming.message && incoming.message}
+                            </div>
+                            )
+                        }
+    </div>
+  );
+}

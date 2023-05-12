@@ -1,5 +1,16 @@
 'use client';
-export default function ChatBubbles({messages, finished}, incoming) {
+
+type Message = {
+    role: string;
+    message: string;
+};
+
+type ChatBubblesProps = {
+    messages: Message[];
+};
+
+
+export default function ChatBubbles({messages}: ChatBubblesProps ) {
     
 
     return (
@@ -28,13 +39,6 @@ export default function ChatBubbles({messages, finished}, incoming) {
                 
             );
         })}
-
-{!finished && (
-                            <div className="flex justify-start bg-gray-200 text-2xl p-2 rounded-md mb-2 max-w-sm">
-                                {incoming.message && incoming.message}
-                            </div>
-                            )
-                        }
 </div>
       
     )

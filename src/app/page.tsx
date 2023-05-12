@@ -1,7 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import ChatWindow from "./ChatWindow";
-import { OpenAI } from "langchain/llms/openai";
 
 
 

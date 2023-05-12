@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
+
 'use client'
 import React,{useState, useEffect} from 'react'
 
@@ -12,7 +10,6 @@ export default function ChatWindow() {
     const [incoming, setIncoming] = useState( { role: "ai", message: "" });
     const [newMessage, setNewMessage] = useState( { role: "ai", message: "" } );
     const [input, setInput] = useState("");
-    const [history, setHistory] = useState([]);
     const [finished, setFinished] = useState(true);
     const [messages, setMessages] = useState([{
         role: "ai",
@@ -29,10 +26,10 @@ export default function ChatWindow() {
         if (newMessage.message) {
             setMessages((prevMsgs) => [...prevMsgs, newMessage])
         }
-    }, [finished])
+    }, [finished, newMessage])
     
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (input == ""){
             return
@@ -89,9 +86,9 @@ export default function ChatWindow() {
       <div className="px-4 py-5 sm:p-2 flex flex-col flex-grow ">
         <h1 className="text-2xl font-semibold leading-6 text-gray-900 mb-4 flex-none">EV GPT </h1>
         <section className='border border-gray-500 rounded-md flex-1 overflow-y-auto p-2'>
-        <ChatBubbles messages={messages} finished={finished} incoming={incoming}/>
+        <ChatBubbles messages={messages}/>
         </section>
-        <form onSubmit={handleSubmit} className="mt-5 sm:flex sm:items-center flex-">
+        <form onSubmit={(e) => { e.preventDefault(); handleSubmit(e).catch(err => console.error(err)); }} className="mt-5 sm:flex sm:items-center flex-">
           <div className="w-full sm:max-w-xs">
             <label htmlFor="userInput" className="sr-only">
               EV GPT

@@ -26,7 +26,7 @@ export default function ChatWindow() {
         if (newMessage.message) {
             setMessages((prevMsgs) => [...prevMsgs, newMessage])
         }
-    }, [finished, newMessage])
+    }, [finished])
     
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

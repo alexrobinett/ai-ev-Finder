@@ -26,7 +26,7 @@ export async function POST(req: Request) {
         async handleLLMNewToken(token: string) {
             await writer.ready;
             await writer.write(encoder.encode(`${token}`));
-            chatHistory = chatHistory + `${token}`
+            chatHistory = chatHistory +`${token}`
         }
     
         async handleLLMEnd() {
@@ -57,7 +57,7 @@ export async function POST(req: Request) {
         }
    
         const model = new OpenAI({
-            modelName: "text-davinci-003",
+            modelName: "gpt-4",
             temperature: 0.9,
             streaming: true,
             callbacks: [handler1],
@@ -71,13 +71,11 @@ export async function POST(req: Request) {
 
         console.log(body)
 
+
+
         const chain = ConversationalRetrievalQAChain.fromLLM(
             model,
             vectorStore.asRetriever(),
-            {
-                questionGeneratorTemplate: "give me information about electric vehicles. Your also friendly an can chat",
-                returnSourceDocuments: true,
-            }
         );
 
         

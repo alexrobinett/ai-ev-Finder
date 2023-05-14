@@ -11,7 +11,8 @@ export default function ChatWindow() {
     const [newMessage, setNewMessage] = useState( { role: "ai", message: "" } );
     const [input, setInput] = useState("");
     const [finished, setFinished] = useState(true);
-    const [history, setHistory] = useState([]);
+    const [fullResponse, setFullResponse] = useState("");
+    const [history, setHistory] = useState("");
     const [messages, setMessages] = useState([{
         role: "ai",
         message: "Hello, I'm EV-GPT! Ask me anything about Electric Vehicles.",
@@ -24,59 +25,68 @@ export default function ChatWindow() {
     }, [incoming])
 
     useEffect(() => {
-        if (newMessage.message) {
-            setMessages((prevMsgs) => [...prevMsgs, newMessage])
-        }
-    }, [finished])
+      if (newMessage.message) {
+          setMessages((prevMsgs) => [...prevMsgs, newMessage])
+          setHistory(prevHistory => prevHistory + " " + newMessage.message);
+      }
+  }, [finished])
     
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (input == ""){
-            return
-        }
-        setFinished(false);
-        setMessages((prev) => [...prev, { role: "human", message: input }])
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (input == ""){
+        return
+    }
+    setFinished(false);
+    setMessages((prev) => [...prev, { role: "human", message: input }])
 
+    // add the user's input to the history
+    setHistory(prevHistory => prevHistory + " " + input);
 
-        const res = await fetch("/api/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                query: input,
-                history: history,
-            }),
-        });
+    const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            query: input,
+            history: history,
+        }),
+    });
 
+    setInput("");
+    setIncoming( { role: "ai", message: "" });
+    setFullResponse(""); // Reset full response when a new message is sent
 
-        setInput("");
-        setIncoming( { role: "ai", message: "" });
+    const stream = res.body;
+    console.log(stream)
+    const reader = stream.getReader();
 
-        const stream = res.body;
-        console.log(stream)
-        const reader = stream.getReader();
-
-        try {
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) {
-                    break;
-                }
-
-                const decodedValue = new TextDecoder().decode(value);
-                setIncoming( ({ role, message }) => ({ role, message: message + decodedValue }));
+    try {
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) {
+                // Update history with full response when the stream ends
+                setHistory(prevHistory => prevHistory + " " + fullResponse);
+                break;
             }
 
-        } catch (error) {
-            console.error(error);
-        } finally {
-            reader.releaseLock();
-            setIncoming( { role: "ai", message: "" });
-            setFinished(true)
+            const decodedValue = new TextDecoder().decode(value);
+            setIncoming( ({ role, message }) => ({ role, message: message + decodedValue }));
+            setFullResponse(prevResponse => prevResponse + decodedValue); // Accumulate full response
+
         }
-    };
+
+    } catch (error) {
+        console.error(error);
+    } finally {
+        reader.releaseLock();
+        setIncoming( { role: "ai", message: "" });
+        setFinished(true)
+      console.log(history)
+    }
+};
+  
 
   return (
     <div className=" flex w-full flex-col bg-white flex-auto drop-shadow-md sm:rounded-lg pt-2 md:max-w-2xl sm:my-4 sm:px-4 ">

@@ -6,19 +6,19 @@ import { OpenAI } from "langchain/llms/openai";
 import { ConversationalRetrievalQAChain } from "langchain/chains";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
-import { BufferMemory } from "langchain/memory";
 
 interface Body {
     query: string
     history: never[]
 }
 
+
 export async function POST(req: Request) {
     const body = await req.json()as Body 
     const encoder = new TextEncoder();
     const stream = new TransformStream();
     const writer = stream.writable.getWriter();
-    const chatHistory = []
+    let chatHistory = ""
 
     class CustomHandler extends BaseCallbackHandler {
         name = "custom_handler";
@@ -26,6 +26,7 @@ export async function POST(req: Request) {
         async handleLLMNewToken(token: string) {
             await writer.ready;
             await writer.write(encoder.encode(`${token}`));
+            chatHistory = chatHistory + `${token}`
         }
     
         async handleLLMEnd() {
@@ -68,6 +69,8 @@ export async function POST(req: Request) {
             { pineconeIndex }
         );
 
+        console.log(body)
+
         const chain = ConversationalRetrievalQAChain.fromLLM(
             model,
             vectorStore.asRetriever(),
@@ -83,12 +86,17 @@ export async function POST(req: Request) {
             .call({ question: `${body.query}`, chat_history: chatHistory })
             .catch((error: any) => console.error(error));
 
-        return new NextResponse(stream.readable , {
-            headers: {
-                "Content-Type": "text/event-stream",
-                "Cache-Control": "no-cache",
-            },
-        });
+            chatHistory = chatHistory + body.query
+
+            return new NextResponse(stream.readable , {
+                headers: {
+                    "Content-Type": "text/event-stream",
+                    "Cache-Control": "no-cache",
+                },
+            });
+
+            
+       
     } catch (error: unknown){
         if (error instanceof Error) {
             return new Response(

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { BaseCallbackHandler } from "langchain/callbacks";
 import { PineconeClient } from '@pinecone-database/pinecone';
 import { OpenAI } from "langchain/llms/openai";
-import { ConversationalRetrievalQAChain } from "langchain/chains";
+import { ConversationChain, ConversationalRetrievalQAChain, RetrievalQAChain } from "langchain/chains";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
    
         const model = new OpenAI({
             modelName: "gpt-4",
-            temperature: 0.9,
+            temperature: .6,
             streaming: true,
             callbacks: [handler1],
             maxTokens: 256,
@@ -70,7 +70,6 @@ export async function POST(req: Request) {
         );
 
         console.log(body)
-
 
 
         const chain = ConversationalRetrievalQAChain.fromLLM(

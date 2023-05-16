@@ -7,14 +7,16 @@ import { ConversationChain, ConversationalRetrievalQAChain, RetrievalQAChain } f
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 
+
+export const config = {
+    runtime: 'edge',
+  };
+
 interface Body {
     query: string
     history: never[]
 }
 
-export const config = {
-    runtime: 'edge',
-  };
 
 export async function POST(req: Request) {
     const body = await req.json()as Body 

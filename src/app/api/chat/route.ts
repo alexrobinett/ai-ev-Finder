@@ -8,10 +8,6 @@ import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 
 
-export const config = {
-    runtime: 'edge',
-  };
-
 interface Body {
     query: string
     history: never[]

@@ -89,10 +89,11 @@ export default function ChatWindow() {
   
 
   return (
-    <div className=" flex w-full flex-col bg-white flex-auto drop-shadow-md sm:rounded-lg pt-2 md:max-w-2xl sm:my-4 sm:px-4 ">
-      <div className="px-4 py-5 sm:p-2 flex flex-col flex-grow ">
-        <h1 className="text-4xl font-semibold leading-6 text-gray-900 my-6 flex-none">EV GPT </h1>
-        <section className='border border-gray-500 rounded-md flex-1 overflow-y-auto  max-h[15rem] p-2 md:max-h-[38rem]'>
+    <div className=" flex w-full flex-col bg-white flex-auto drop-shadow-md sm:rounded-lg pt-2 md:max-w-4xl sm:my-4 sm:px-4">
+      <div className="px-4 py-5 sm:p-2 flex flex-col flex-grow mb-4">
+        <h1 className="text-4xl font-semibold leading-6 text-gray-900 my-4 flex-none">EV GPT </h1>
+        <span className="text-md font-semibold leading-6 text-gray-900 mb-4 flex-none">Ask EV-GPT any questions regarding electric vehicles, including inquiries about charging procedures and vehicle recommendations.</span>
+        <section className='border border-gray-500 rounded-md flex-1 overflow-y-auto  max-h[15rem] p-2 md:max-h-[36rem]'>
         <ChatBubbles messages={messages} finished={finished} incoming={incoming}/>
         </section>
         <form onSubmit={(e) => { e.preventDefault(); handleSubmit(e).catch(err => console.error(err)); }} className="mt-5 sm:flex sm:items-center flex-">
@@ -103,7 +104,7 @@ export default function ChatWindow() {
             <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
               placeholder="Ask about EVs"
             />
           </div>

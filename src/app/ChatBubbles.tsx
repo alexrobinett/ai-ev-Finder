@@ -34,7 +34,7 @@ export default function ChatBubbles({ messages, finished, incoming }: ChatBubble
       })}
 
         {!finished && (
-                            <div className="bg-gray-200 text-sm p-2 m-2 rounded-md w-fit md:text-md">
+                            <div className="bg-gray-200 text-sm p-2 m-2 rounded-md w-fit min-h-[2.10 rem] md:text-md">
                                 {incoming.message && incoming.message}
                             </div>
                             )

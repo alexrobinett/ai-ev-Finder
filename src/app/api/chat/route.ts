@@ -12,6 +12,9 @@ interface Body {
     history: never[]
 }
 
+export const config = {
+    runtime: 'edge',
+  };
 
 export async function POST(req: Request) {
     const body = await req.json()as Body 
@@ -75,6 +78,7 @@ export async function POST(req: Request) {
         const chain = ConversationalRetrievalQAChain.fromLLM(
             model,
             vectorStore.asRetriever(),
+            {},
         );
 
         

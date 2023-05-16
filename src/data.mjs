@@ -41,7 +41,7 @@ const pineconeIndex = client.Index(process.env.PINECONE_INDEX);
 // }
 
  export const  runInternetData = async () => {
-    const loader = new PuppeteerWebBaseLoader("https://electrek.co/2023/05/03/which-electric-vehicles-still-qualify-for-us-federal-tax-credit/", {
+    const loader = new PuppeteerWebBaseLoader("https://www.consumerreports.org/cars/ev-chargers/how-well-do-tesla-superchargers-work-for-non-tesla-evs-a4713673565/" , {
    launchOptions: {
      headless: false,
    },

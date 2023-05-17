@@ -96,11 +96,11 @@ export default function ChatWindow() {
   return (
     <div className="md:max-w-3xl: relative flex w-full flex-auto flex-col border-0 border-slate-900 bg-gray-50 shadow drop-shadow-lg sm:my-6 sm:max-w-xl sm:rounded-lg sm:px-4">
       <div
-        className=" flex flex-grow flex-col px-4 py-2 sm:p-2 h-20 "
+        className=" flex h-20 flex-grow flex-col px-4 py-2 sm:p-2 "
         ref={chatWindowRef}
       >
         <ChatHeader />
-        <section className="flex-1 rounded-md border border-gray-200 bg-white overflow-auto overscroll-contain p-2">
+        <section className="flex-1 overflow-auto overscroll-contain rounded-md border border-gray-200 bg-white p-2">
           <ChatBubbles
             messages={messages}
             finished={finished}

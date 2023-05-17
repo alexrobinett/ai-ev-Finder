@@ -4,7 +4,7 @@
 import React, { useEffect } from 'react';
 import { useRef } from 'react';
 
-import ScrollableFeed from 'react-scrollable-feed'
+import ScrollableFeed from 'react-scrollable-feed';
 
 type Message = {
   role: string;
@@ -22,21 +22,18 @@ export default function ChatBubbles({
   finished,
   incoming
 }: ChatBubblesProps) {
-
-
-  const messagesEndRef = useRef(null)
+  const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   useEffect(() => {
-    scrollToBottom()
-  }, [messages])
+    scrollToBottom();
+  }, [incoming]);
 
   return (
     <div className="flex flex-col">
-
       {messages.map((message, index) => {
         const isAI = message.role === 'ai';
         const bubbleStyle = isAI

@@ -5,7 +5,6 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start"
   },
@@ -23,8 +22,7 @@
     "openai": "^3.2.1",
     "puppeteer": "^19.11.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "zod": "^3.21.4"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@types/eslint": "^8.21.3",

@@ -12,17 +12,14 @@ EV-GPT is an AI chatbot focused on electric vehicles, powered by OpenAI's GPT-4 
 
 **Tech used:** TypeScript, NEXT.js, LangChain, OpenAI, Puppeteer, TailwindCSS, and PinconeDB
 
-EV-GPT is a web application developed with TypeScript and NEXT.js. The chatbot was trained using LangChain and OpenAI's GPT-4, with Puppeteer assisting in scraping the web for electric vehicle information and documents. TailwindCSS was implemented to provide a user-friendly interface, and PinconeDB was utilized for efficient data management.
+EV-GPT is a web application developed with TypeScript and NEXT.js. The chatbot was trained using LangChain and OpenAI's GPT-4, with Puppeteer assisting in scraping the web for electric vehicle information and documents. TailwindCSS was implemented to provide a user-friendly interface, and PinconeDB was utilized as a Vectorsore for imbedings.
 
 LangChain is a framework for developing applications powered by language models. It allows the chatbot to be data-aware, connecting the language model to other sources of data.
 
-In order to interact with the data through the language model, the documents are first stored in an Index within PinconeDB. This format allows easy interaction with the data in downstream steps. The process of ingesting documents into a Vectorstore involves loading the documents using a Document Loader, splitting the documents using a Text Splitter, creating embeddings for the documents using a Text Embedding Model, and finally storing the documents and embeddings in a Vectorstore.
+In order to interact with the data through the language model, the documents are first stored in an vector store with PinconeDB. This format allows easy interaction with the data in downstream steps. The process of ingesting documents into a Vectorstore involves loading the documents using a Document Loader, splitting the documents using a Text Splitter, creating embeddings for the documents using a Text Embedding Model, and finally storing the documents and embeddings in a PineconeDB
 
 EV-GPT further implements the ConversationalRetrievalQAChain from LangChain. This chain builds on the RetrievalQAChain to provide a chat history component, taking two inputs: a question and the chat history. It combines the chat history and the question into a standalone question, retrieves relevant documents, and then passes those documents and the question to a question answering chain to return a response.
 
-## Streaming Feature
-
-To provide a seamless chat experience similar to modern chat applications, EV-GPT uses the streaming feature in NEXT.js. It's designed to handle a large number of requests in real-time, ensuring that the chat interface is always responsive and updated instantly.
 
 ## Optimizations
 
@@ -44,4 +41,4 @@ EV-GPT is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-For any questions or support, please contact [email](mailto:alex@robinettmedia.com).
+For any questions or support, please contact [Alex Robinett](mailto:alex@robinettmedia.com).

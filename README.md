@@ -4,9 +4,9 @@ EV-GPT is an AI chatbot focused on electric vehicles, powered by OpenAI's GPT-4 
 
 **Link to project:** https://ai-ev-finder.vercel.app
 
-![EV-GPT](https://github.com/alexrobinett/ai-ev-Finder/assets/59510577/c695ea93-b91e-4b28-9a76-fa7767eb0731)
 
-&nbsp;
+![EV-GPT](https://github.com/alexrobinett/ai-ev-Finder/assets/59510577/eda13ec8-c511-4348-b6d5-e95183477c31)
+
 
 ## How It's Made:
 

@@ -1,5 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRef } from 'react';
+
+import ScrollableFeed from 'react-scrollable-feed'
 
 type Message = {
   role: string;
@@ -17,8 +22,21 @@ export default function ChatBubbles({
   finished,
   incoming
 }: ChatBubblesProps) {
+
+
+  const messagesEndRef = useRef(null)
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages])
+
   return (
     <div className="flex flex-col">
+
       {messages.map((message, index) => {
         const isAI = message.role === 'ai';
         const bubbleStyle = isAI
@@ -36,10 +54,11 @@ export default function ChatBubbles({
       })}
 
       {!finished && (
-        <div className="md:text-md m-2 min-h-[2.10rem] w-fit rounded-md bg-gray-200 p-2 text-sm">
+        <div className="md:text-md m-2 min-h-[2rem] w-fit rounded-md bg-gray-200 p-2 text-sm">
           {incoming.message && incoming.message}
         </div>
       )}
+      <div ref={messagesEndRef} />
     </div>
   );
 }

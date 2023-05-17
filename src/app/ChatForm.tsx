@@ -48,7 +48,7 @@ export default function ChatForm({
         <button
           disabled
           type="submit"
-          className="absolute inset-y-0 right-0 flex animate-pulse items-center justify-center rounded-md bg-blue-500 px-3 py-2  shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 sm:ml-3 sm:mt-0 sm:w-auto"
+          className="absolute inset-y-0 right-0 flex animate-pulse items-center justify-center rounded-md  px-3 py-2 sm:ml-3 sm:mt-0 sm:w-auto"
         >
           <div role="status">
             <svg

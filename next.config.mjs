@@ -3,7 +3,6 @@
  * for Docker builds.
  */
 
-
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
@@ -11,7 +10,7 @@ const config = {
     config.experiments = {
       asyncWebAssembly: true,
       layers: true,
-      topLevelAwait: true,
+      topLevelAwait: true
     };
 
     return config;
@@ -23,8 +22,8 @@ const config = {
    * @see https://github.com/vercel/next.js/issues/41980
    */
   i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
-  },
+    locales: ['en'],
+    defaultLocale: 'en'
+  }
 };
 export default config;

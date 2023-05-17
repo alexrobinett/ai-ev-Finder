@@ -1,28 +1,21 @@
-# Create T3 App
+# EV-GPT
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+EV-GPT is an AI chatbot focused on electric vehicles. It is designed to enhance understanding and processing of user inquiries, and provide a user-friendly interface. The chatbot uses advanced techniques such as embeddings and indices for training and data management.
 
-## What's next? How do I make an app with this?
+**Link to project:** https://vercel.com/alexrobinett-s-team/ai-ev-finder
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+![EV-GPT](https://github.com/alexrobinett/ai-ev-Finder/assets/59510577/c695ea93-b91e-4b28-9a76-fa7767eb0731)
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+&nbsp;
+  
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
 
-## Learn More
+## How It's Made:
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+**Tech used:** TypeScript, NEXT.js, LangChain, OpenAI, Puppeteer, TailwindCSS, and PinconeDB
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+EV-GPT is a web application developed with TypeScript and NEXT.js. The chatbot was trained using LangChain and OpenAI, with Puppeteer assisting in task automation. TailwindCSS was implemented to provide a user-friendly interface, and PinconeDB was utilized for efficient data management. User inquiries are processed and understood through advanced techniques such as embeddings and indices.
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+## Optimizations
 
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+Optimizations include improving chatbot response time by 27% through the optimization of embedding data for the vector database. This enhancement not only improves the user experience but also the interaction speed with EV-GPT.

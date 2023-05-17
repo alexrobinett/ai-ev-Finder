@@ -94,13 +94,13 @@ export default function ChatWindow() {
   };
 
   return (
-    <div className="relative flex w-full flex-auto flex-col bg-white pt-2 drop-shadow-md sm:my-4 sm:rounded-lg sm:px-4 md:max-w-4xl">
+    <div className="md:max-w-3xl: relative flex w-full flex-auto flex-col border-0 border-slate-900 bg-gray-50 shadow drop-shadow-lg sm:my-6 sm:max-w-xl sm:rounded-lg sm:px-4">
       <div
-        className="mb-4 flex flex-grow flex-col px-4 py-5 sm:p-2"
+        className=" flex flex-grow flex-col px-4 py-2 sm:p-2"
         ref={chatWindowRef}
       >
         <ChatHeader />
-        <section className="max-h[15rem] mb-24 mt-32 flex-1 overflow-y-auto rounded-md border border-gray-500 p-2 sm:mb-20 sm:mt-28 md:max-h-[36rem]">
+        <section className="flex-1 overflow-y-auto rounded-md border border-gray-200  bg-white p-2">
           <ChatBubbles
             messages={messages}
             finished={finished}
@@ -108,7 +108,7 @@ export default function ChatWindow() {
           />
         </section>
       </div>
-      <div className="fixed inset-x-0 bottom-0 mb-2 p-2 px-4 sm:px-6">
+      <div className="sticky inset-x-0 bottom-0 mx-2 mb-2 p-2 drop-shadow-sm sm:max-w-4xl sm:px-0">
         <ChatForm
           input={input}
           setInput={setInput}

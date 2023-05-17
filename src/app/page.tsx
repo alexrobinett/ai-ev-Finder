@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex h-full flex-col items-center justify-center bg-slate-100">
+      <main className="flex h-full flex-col items-center justify-center bg-gradient-to-r from-sky-400 to-blue-500">
         <ChatWindow />
       </main>
     </>

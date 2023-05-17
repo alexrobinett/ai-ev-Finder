@@ -20,7 +20,7 @@ In order to interact with the data through the language model, the documents are
 
 EV-GPT further implements the ConversationalRetrievalQAChain from LangChain. This chain builds on the RetrievalQAChain to provide a chat history component, taking two inputs: a question and the chat history. It combines the chat history and the question into a standalone question, retrieves relevant documents, and then passes those documents and the question to a question answering chain to return a response.
 
-You can fork EV-GPT and train it on any set of documents or data you wish. 
+You can fork EV-GPT and train it on any set of documents or data you wish.
 
 ## Optimizations
 
@@ -32,7 +32,7 @@ To install and run this project locally, follow these steps:
 
 1. Clone the repository.
 2. Install the dependencies with `npm install`.
-3. Sign up for a PineconeDB & OpenAI Account 
+3. Sign up for a PineconeDB & OpenAI Account
 4. Copy the `env.example` file and rename it to `.env`. Generate and fill in the necessary environment variables.
 5. Use the `data.mjs` file to add data and documents to your database with puppeteer.
 6. Start the development server with `npm run dev`.

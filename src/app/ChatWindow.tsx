@@ -91,7 +91,6 @@ export default function ChatWindow() {
       reader.releaseLock();
       setIncoming({ role: 'ai', message: '' });
       setFinished(true);
-      console.log(history);
     }
   };
 

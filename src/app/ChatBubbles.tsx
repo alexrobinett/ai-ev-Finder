@@ -30,7 +30,7 @@ export default function ChatBubbles({
 
   useEffect(() => {
     scrollToBottom();
-  }, [incoming]);
+  }, [incoming, messages]);
 
   return (
     <div className="flex flex-col">

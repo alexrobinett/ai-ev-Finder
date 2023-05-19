@@ -4,7 +4,6 @@
 import React, { useEffect } from 'react';
 import { useRef } from 'react';
 
-import ScrollableFeed from 'react-scrollable-feed';
 
 type Message = {
   role: string;

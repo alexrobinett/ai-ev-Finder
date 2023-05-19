@@ -46,7 +46,10 @@ export default function ChatWindow() {
     if (input == '') {
       return;
     }
-    setFinished(false);
+    setTimeout(() => {
+      setFinished(false);
+    }, 2700);
+   
     setMessages((prev) => [...prev, { role: 'human', message: input }]);
 
     setHistory((prevHistory) => prevHistory + ' ' + input);

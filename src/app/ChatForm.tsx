@@ -1,6 +1,5 @@
 import React from 'react';
 import ChatInput from './ChatInput';
-import { LineWave } from 'react-loader-spinner';
 
 interface ChatFormProps {
   input: string;

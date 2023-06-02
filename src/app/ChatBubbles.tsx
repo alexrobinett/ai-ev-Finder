@@ -33,7 +33,9 @@ export default function ChatBubbles({
 
   return (
     <div className="flex flex-col">
-      {messages.map((message, index) => {
+      {messages
+      .filter((message) => message.role !== "system")
+      .map((message, index) => {
         const isAI = message.role === 'ai';
         const bubbleStyle = isAI
           ? 'bg-gray-200 text-sm p-2 m-2 rounded-md w-fit md:text-md'

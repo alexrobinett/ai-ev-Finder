@@ -8,7 +8,7 @@ interface ChatInputProps {
 export default function ChatInput({ input, setInput }: ChatInputProps) {
   return (
     <>
-      <label className="sr-only">EV GPT Input</label>
+      <label className="sr-only">Chatbot Label Name</label>
       <input
         value={input}
         onChange={(e) => setInput(e.target.value)}

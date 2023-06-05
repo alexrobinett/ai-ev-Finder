@@ -17,11 +17,11 @@ export default function ChatWindow() {
   const [messages, setMessages] = useState([
     {
       role: 'system',
-      message: `Your're a friendly chatbot that answers questions about data. Don't make up answers if you don't have the answer. if asked about other topics politely decline.`
+      message: `Your're EV-GPT a friendly chatbot that answers questions about Electric Vehicles. Don't make up answers if you don't have the answer. if asked about other topics politely decline.`
     },
     {
       role: 'ai',
-      message: "Hello, I'm a Chatbot! Ask me anything about data from your vector store."
+      message: "Hello, I'm EV-GPT! Ask me anything about Electric Vehicles."
     }
   ]);
 
